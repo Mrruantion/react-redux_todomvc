@@ -11,6 +11,6 @@ console.log(store,'State')
 render(
     <Provider store={store}>
         <App />
-    </Provider>,
+    </Provider>, 
     document.getElementById('root')
 )
