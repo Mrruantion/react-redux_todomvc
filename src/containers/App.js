@@ -17,13 +17,15 @@ App.PropTypes = {
     todos: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired
 }
+// console.log(TodoActions, 'TodoActions')
 
 const mapStateToProps = state => ({
     todos: state.todos
 })
-
+// console.log(mapStateToProps(),'mapStateToProps')
 const mapDispatchToProps = dispatch => ({
     actions: bindActionCreators(TodoActions, dispatch)
 })
+// console.log(mapDispatchToProps(),'mapDispatchToProps')
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

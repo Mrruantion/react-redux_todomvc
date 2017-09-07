@@ -3,11 +3,11 @@ import { render } from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import App from './containers/App'
-import reducer from './reducer'
+import reducer from './reducers'
 import 'todomvc-app-css/index.css'
 
 const store = createStore(reducer)
-
+console.log(store,'State')
 render(
     <Provider store={store}>
         <App />

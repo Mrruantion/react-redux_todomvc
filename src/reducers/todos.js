@@ -7,8 +7,9 @@ const initialState = [
         id: 0
     }
 ]
-
+//处理数据
 export default function todos(state = initialState, action) {
+    console.log(state,'state')
     switch (action.type) {
         case ADD_TODO:
             return [

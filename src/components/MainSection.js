@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import TodoItem from './TodoItem'
 import Footer from './Footer'
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodiFilters'
+import { SHOW_ALL, SHOW_COMPLETED, SHOW_ACTIVE } from '../constants/TodoFilters'
 
 
 const TODO_FILTERS = {
@@ -10,7 +10,8 @@ const TODO_FILTERS = {
     [SHOW_COMPLETED]: todo => !todo.completed,
     [SHOW_ACTIVE]: todo => todo.completed
 }
-
+console.log([SHOW_ALL], SHOW_COMPLETED, SHOW_ACTIVE, '123')
+console.log(TODO_FILTERS, 'totofilter')
 export default class MainSection extends Component {
     static propTypes = {
         todos: PropTypes.array.isRequired,
@@ -30,13 +31,20 @@ export default class MainSection extends Component {
     }
 
     renderToggleAll(completedCount) {
+        // const { todos, actions } = this.props
         const { todos, actions } = this.props
         if (todos.length > 0) {
+            // return (
+            //     <input className="toggle-all"
+            //         type="checkbox"
+            //         checked={completedCount === todos.length}
+            //         onChange={actions.completeAll} />
+            // )
             return (<input
                 className="toggle-all"
                 type="checkbox"
                 checked={completedCount === todos.length}
-                onChange={actions.completedAll}
+                onChange={actions.completeAll}
             />)
         }
     }
@@ -55,14 +63,20 @@ export default class MainSection extends Component {
         }
     }
     render() {
+        //todos 数据
+        //actions func
         const { todos, actions } = this.props
+        console.log(this.props, 'todos.actions')
         const { filter } = this.state
+        console.log(filter, 'filter')
         const filteredTodos = todos.filter(TODO_FILTERS[filter])
+        console.log(filteredTodos, 'filteredTodos')
         const completedCount = todos.reduce((count, todo) => todo.completed ? count + 1 : count, 0)
 
         return (
             <section className="main">
-                {this.renderToggleAll(completedCount)}
+
+                <div className="todo-list"><li>{this.renderToggleAll(completedCount)}</li></div>
                 <ul className="todo-list">
                     {filteredTodos.map(todo => <TodoItem key={todo.id} todo={todo} {...actions} />)}
                 </ul>
